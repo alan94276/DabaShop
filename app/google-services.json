@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900381922645",
+    "project_id": "dabashop-16a8c",
+    "storage_bucket": "dabashop-16a8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900381922645:android:e0a57d1535c5843d5b4bdc",
+        "android_client_info": {
+          "package_name": "com.example.dabashop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZCB0mH1-1hCiwXpgf-Xw4qCIkD2MSuJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
