@@ -2,6 +2,7 @@ package com.example.dabashop.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,11 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
         binding.tvForgotPasswordLogin.setOnClickListener{
             setUpBottomsheetDialog { email ->
-                viewModel.resetPassword(email)
+                if (email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches() ){
+                    Snackbar.make(requireView(), "Debes escribir un correo valido", Snackbar.LENGTH_LONG).show()
+                }else{
+                    viewModel.resetPassword(email)
+                }
             }
         }
 
