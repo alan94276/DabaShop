@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 
 val TAG = "RegisterFragment"
 @AndroidEntryPoint
-class RegisterFragment: Fragment(R.layout.fragment_introduction) {
+class RegisterFragment: Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
     private val viewModel by viewModels<RegisterViewModel>()
 

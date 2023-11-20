@@ -65,7 +65,7 @@ dependencies {
 
     implementation("com.shuhart.stepview:stepview:1.5.1")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
 
     implementation("com.google.dagger:hilt-android:2.38.1")
 
