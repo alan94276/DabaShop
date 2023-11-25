@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dabashop.R
+import com.example.dabashop.adapters.MejoresOfertasAdapter
+import com.example.dabashop.adapters.MejoresProductosAdapter
 import com.example.dabashop.adapters.SpecialProductsAdapter
 import com.example.dabashop.databinding.FragmentMainCategoryBinding
 import com.example.dabashop.util.Resource
@@ -24,6 +27,8 @@ private val TAG = "MainCategoryFragment"
 class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
     private lateinit var binding: FragmentMainCategoryBinding
     private lateinit var specialProducstAdapter: SpecialProductsAdapter
+    private lateinit var mejoresOfertasAdapter: MejoresOfertasAdapter
+    private lateinit var mejoresProductosAdapter: MejoresProductosAdapter
     private val viewModel by viewModels<MainCategoryViewModel>()
 
     override fun onCreateView(
@@ -39,6 +44,10 @@ class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
         super.onViewCreated(view, savedInstanceState)
 
         setupSpecialProducstRv()
+        setupMejoresOfertasRv()
+        setupMejoresProductosRv()
+
+        //recycler view productos especiales.
         lifecycleScope.launchWhenStarted {
             viewModel.specialProducst.collectLatest {
                 when (it){
@@ -47,6 +56,49 @@ class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
                     }
                     is Resource.Success ->{
                         specialProducstAdapter.differ.submitList(it.data)
+                        hideLoading()
+                    }
+                    is Resource.Error ->{
+                        hideLoading()
+                        Log.e(TAG,it.message.toString())
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+
+        //recycler view mejores ofertas
+        lifecycleScope.launchWhenStarted {
+            viewModel.mejoresOfertas.collectLatest {
+                when (it){
+                    is Resource.Loading ->{
+                        showLoading()
+                    }
+                    is Resource.Success ->{
+                        mejoresOfertasAdapter.differ.submitList(it.data)
+                        hideLoading()
+                    }
+                    is Resource.Error ->{
+                        hideLoading()
+                        Log.e(TAG,it.message.toString())
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        //recycler view mejores productos
+        lifecycleScope.launchWhenStarted {
+            viewModel.mejoresProductos.collectLatest {
+                when (it){
+                    is Resource.Loading ->{
+                        showLoading()
+                    }
+                    is Resource.Success ->{
+                        mejoresProductosAdapter.differ.submitList(it.data)
                         hideLoading()
                     }
                     is Resource.Error ->{
@@ -73,6 +125,22 @@ class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
         binding.rvSpecialProducts.apply {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
             adapter = specialProducstAdapter
+        }
+    }
+
+    private fun setupMejoresProductosRv() {
+        mejoresProductosAdapter = MejoresProductosAdapter()
+        binding.rvBestProducts.apply {
+            layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
+            adapter = mejoresProductosAdapter
+        }
+    }
+
+    private fun setupMejoresOfertasRv() {
+        mejoresOfertasAdapter = MejoresOfertasAdapter()
+        binding.rvBestDealsProducts.apply {
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
+            adapter = mejoresOfertasAdapter
         }
     }
 }

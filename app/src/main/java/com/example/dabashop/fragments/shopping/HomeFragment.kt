@@ -36,15 +36,16 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             JaketsFragment()
         )
 
+        binding.viewpagerHome.isUserInputEnabled = false
+
         val viewPager2Adapter = HomeViewpagerAdapter(categoriesFragment,childFragmentManager,lifecycle)
         binding.viewpagerHome.adapter = viewPager2Adapter
         TabLayoutMediator(binding.tabLayout,binding.viewpagerHome){ tab, position->
             when(position){
                 0 -> tab.text = "Inicio"
                 1 -> tab.text = "Camisas"
-                2 -> tab.text = "Playeras"
-                3 -> tab.text = "Pantalones"
-                4 -> tab.text = "Chamarras"
+                2 -> tab.text = "Pantalones"
+                3 -> tab.text = "Chamarras"
             }
         }.attach()
     }
