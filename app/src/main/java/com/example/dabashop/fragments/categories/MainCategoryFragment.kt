@@ -11,6 +11,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dabashop.R
@@ -19,6 +20,7 @@ import com.example.dabashop.adapters.MejoresProductosAdapter
 import com.example.dabashop.adapters.SpecialProductsAdapter
 import com.example.dabashop.databinding.FragmentMainCategoryBinding
 import com.example.dabashop.util.Resource
+import com.example.dabashop.util.showBottomNavigationView
 import com.example.dabashop.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -48,6 +50,21 @@ class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
         setupSpecialProducstRv()
         setupMejoresOfertasRv()
         setupMejoresProductosRv()
+
+        specialProducstAdapter.onClick = {
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+
+        mejoresOfertasAdapter.onClick = {
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+
+        mejoresProductosAdapter.onClick = {
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
 
         //recycler view productos especiales.
         lifecycleScope.launchWhenStarted {
@@ -154,5 +171,10 @@ class MainCategoryFragment: Fragment(R.layout.fragment_main_category) {
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
             adapter = mejoresOfertasAdapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 }

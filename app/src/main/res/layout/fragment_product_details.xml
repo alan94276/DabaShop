@@ -21,6 +21,11 @@
             app:cardElevation="0dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerProductImages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
             
             <ImageView
                 android:id="@+id/imageClose"
@@ -127,7 +132,7 @@
                     android:textColor="@color/black"
                     android:text="size"/>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvSize"
+                    android:id="@+id/rv_sizes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -142,7 +147,7 @@
             app:layout_constraintStart_toStartOf="@id/linearLayoutPreferences"
             app:layout_constraintEnd_toEndOf="@id/linearLayoutPreferences"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Iniciar sesión."
+            android:text="Agregar al carrito."
             android:layout_marginTop="45dp"
             android:layout_marginBottom="20dp"
             app:spinning_bar_color="@color/white"/>
