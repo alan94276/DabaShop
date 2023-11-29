@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.dabashop.R
-import com.example.dabashop.adapters.HomeViewpagerAdapter
 import com.example.dabashop.databinding.FragmentHomeBinding
 import com.example.dabashop.fragments.categories.AccesoryFragment
 import com.example.dabashop.fragments.categories.JaketsFragment
 import com.example.dabashop.fragments.categories.MainCategoryFragment
 import com.example.dabashop.fragments.categories.PantsFragment
 import com.example.dabashop.fragments.categories.ShirtFragment
+import com.example.dabashop.adapters.HomeViewpagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment: Fragment(R.layout.fragment_home) {

@@ -1,6 +1,8 @@
 package com.example.dabashop.di
 
+import com.example.dabashop.firebase.FirebaseCommon
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -20,5 +22,12 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseFireStoreDatabase() = Firebase.firestore
+
+    @Provides
+    @Singleton
+    fun provideFirebaseCommon(
+        firebaseAuth: FirebaseAuth,
+        firestore: FirebaseFirestore
+    )= FirebaseCommon(firestore,firebaseAuth)
 
 }
