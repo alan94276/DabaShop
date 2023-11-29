@@ -98,7 +98,7 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineloginRight"
             app:layout_constraintTop_toBottomOf="@id/tvDonthaveaAccount"
             style="@style/editText"
-            android:hint="Email"
+            android:hint="Correo electronico"
             android:inputType="textEmailAddress"
             android:layout_marginTop="50dp"/>
 
@@ -110,7 +110,7 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineloginRight"
             app:layout_constraintTop_toBottomOf="@id/edEmailLogin"
             style="@style/editText"
-            android:hint="Password"
+            android:hint="Contraseña"
             android:inputType="textPassword"
             android:layout_marginTop="15dp"/>
 
